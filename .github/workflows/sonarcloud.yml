@@ -1,0 +1,43 @@
+name: SonarCloud
+
+on:
+  pull_request:
+  push:
+    tags:
+      - "*"
+
+jobs:
+  sonarcloud:
+    name: SonarCloud Analysis
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
+        with:
+          fetch-depth: 0
+          ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.sha || github.sha }}
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@fc06bc1257f339d1d5d8b3a19a8cae5388b55320
+        with:
+          version: 10.29.2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f
+        with:
+          node-version: 24
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Build tokens
+        run: pnpm build:tokens
+
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarqube-scan-action@299e4b793aaa83bf2aba7c9c14bedbb485688ec4 # v7.1.0
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_PULL_REQUEST_BASE: ${{ github.event_name == 'pull_request' && github.event.pull_request.base.ref || '' }}
+          SONAR_PULL_REQUEST_BRANCH: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.ref || '' }}
+          SONAR_PULL_REQUEST_KEY: ${{ github.event_name == 'pull_request' && github.event.pull_request.number || '' }}
