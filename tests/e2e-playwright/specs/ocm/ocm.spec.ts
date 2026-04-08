@@ -124,7 +124,7 @@ test.describe('federation management', { tag: '@ocm' }, async () => {
     await ui.userSharesResources({
       world,
       stepUser: 'Alice',
-      actionType: 'SIDEBAR_PANEL',
+      actionType: actions.sideBarPanel,
       shares: [
         {
           resource: 'folderPublic',
@@ -246,7 +246,7 @@ test.describe('federation management', { tag: '@ocm' }, async () => {
         { resource: 'sampleGif.gif', type: 'file' },
         { resource: 'testavatar.jpg', type: 'file' }
       ],
-      actionType: 'SIDEBAR_PANEL'
+      actionType: actions.sideBarPanel
     })
 
     // When "Brian" uploads the following resources

@@ -195,8 +195,7 @@ test.describe('Trashbin delete', () => {
     await ui.userRestoresResourcesFromTrashbin({
       world,
       stepUser: 'Alice',
-      resources: ['sample.txt', 'empty-folder'],
-      actionType: 'BATCH_ACTION'
+      resources: ['sample.txt', 'empty-folder']
     })
     // And "Alice" opens the "files" app
     await ui.userOpensApplication({ world, stepUser: 'Alice', name: 'files' })

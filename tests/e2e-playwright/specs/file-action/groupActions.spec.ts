@@ -142,7 +142,7 @@ test.describe('Group actions', { tag: '@predefined-users' }, () => {
     // | sharedFolder | security  | group | Can edit with trashbin | folder       |
     await ui.userSharesResources({
       world,
-      actionType: 'SIDEBAR_PANEL',
+      actionType: actions.sideBarPanel,
       stepUser: 'Alice',
       shares: [
         {

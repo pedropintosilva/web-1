@@ -93,7 +93,7 @@ test.describe('Download', { tag: '@predefined-users' }, () => {
       world,
       stepUser: 'Alice',
       resourceToDownload: resourceToDownloadInBatch,
-      actionType: 'BATCH_ACTION'
+      actionType: actions.batchAction
     })
 
     // And "Alice" opens the following file in mediaviewer
@@ -114,7 +114,7 @@ test.describe('Download', { tag: '@predefined-users' }, () => {
       world,
       stepUser: 'Alice',
       resourceToDownload: downloadImage,
-      actionType: 'PREVIEW_TOPBAR'
+      actionType: actions.previewTopBar
     })
 
     // And "Alice" closes the file viewer
@@ -134,7 +134,7 @@ test.describe('Download', { tag: '@predefined-users' }, () => {
       world,
       stepUser: 'Brian',
       resourceToDownload: resourceToDownloadInBatch,
-      actionType: 'BATCH_ACTION'
+      actionType: actions.batchAction
     })
 
     // And "Brian" downloads the following resources using the sidebar panel
@@ -153,7 +153,7 @@ test.describe('Download', { tag: '@predefined-users' }, () => {
       world,
       stepUser: 'Brian',
       resourceToDownload: resourceToDownloadSidebar,
-      actionType: 'SIDEBAR_PANEL'
+      actionType: actions.sideBarPanel
     })
 
     // And "Brian" opens the following file in mediaviewer
@@ -173,7 +173,7 @@ test.describe('Download', { tag: '@predefined-users' }, () => {
       world,
       stepUser: 'Brian',
       resourceToDownload: downloadImage,
-      actionType: 'PREVIEW_TOPBAR'
+      actionType: actions.topBar
     })
 
     // And "Brian" logs out
